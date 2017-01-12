@@ -1,0 +1,41 @@
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <iostream>
+#include <stdio.h>
+using namespace cv;
+using namespace std;
+
+
+
+int main()
+{
+    VideoCapture camera(0);
+    Mat frame;
+    Mat gray_image;
+    Mat bin;
+
+    while(true){
+        camera >> frame;
+
+        cvtColor( frame, gray_image, CV_BGR2GRAY );
+        threshold( gray_image, bin, 100, 255,0 );
+
+        namedWindow( "test", CV_WINDOW_AUTOSIZE );
+        namedWindow( "Gray image", CV_WINDOW_AUTOSIZE );
+        namedWindow( "Binarized image", CV_WINDOW_AUTOSIZE );
+
+
+        imshow("test", frame);
+        imshow( "Gray image", gray_image );
+        imshow( "Binarized image", bin );
+
+
+        int key = waitKey(10);
+        if(key == 27){
+            break;
+        }
+    }
+
+    return 0;
+}
+

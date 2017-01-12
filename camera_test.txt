@@ -1,0 +1,26 @@
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <iostream>
+#include <stdio.h>
+using namespace cv;
+using namespace std;
+
+
+
+int main()
+{
+    VideoCapture camera(0);
+    Mat frame;
+
+    while(true){
+        camera >> frame;
+        imshow("test", frame);
+        int key = waitKey(10);
+        if(key == 27){
+            break;
+        }
+    }
+
+    return 0;
+}
+
