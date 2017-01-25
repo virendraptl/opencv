@@ -32,7 +32,7 @@ int main()
     imwrite("test_cv_gray.jpg", gray_image);
     imwrite("test_cv_binary.jpg", bin);
 
-    system("/home/kunal/workspace/DisplayImage/tess1.sh");
+    system("/home/kunal/workspace/DisplayImage/tess1.sh");  //path of the bash script to use Tesseract engine
 
     return 0;
 }
