@@ -1,0 +1,39 @@
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace cv;
+using namespace std;
+
+
+
+int main()
+{
+    VideoCapture cap(0);
+
+    // Get the frame
+    Mat save_img;
+    Mat gray_image;
+    Mat bin;
+    cap >> save_img;
+
+
+    if(save_img.empty())
+    {
+      std::cerr << "Something is wrong with the webcam, could not get frame." << std::endl;
+    }
+    // Save the frame into a file
+
+    cvtColor( save_img, gray_image, CV_BGR2GRAY );
+    threshold( gray_image, bin, 100, 255,0 );
+
+    imwrite("test_cv_original.jpg", save_img);
+    imwrite("test_cv_gray.jpg", gray_image);
+    imwrite("test_cv_binary.jpg", bin);
+
+    system("/home/kunal/workspace/DisplayImage/tess1.sh");
+
+    return 0;
+}
+
